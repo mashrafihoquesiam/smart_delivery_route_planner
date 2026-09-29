@@ -1,0 +1,17 @@
+.venv/
+.venv-2/
+__pycache__/
+*.pyc
+.DS_Store
+
+node_modules/
+cache/
+
+models/*.joblib
+models/*.pkl
+
+data/*.csv
+data/*.zip
+data/*.pbf
+data/*.graphml
+data/private/

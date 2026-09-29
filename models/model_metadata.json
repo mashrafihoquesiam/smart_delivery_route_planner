@@ -1,0 +1,32 @@
+{
+  "features": [
+    "latitude",
+    "longitude",
+    "weather_condition",
+    "road_surface",
+    "junction_type",
+    "light_condition",
+    "time_of_day",
+    "vehicle_type",
+    "road_quality",
+    "speed_limit_zone",
+    "month",
+    "road_class"
+  ],
+  "target": "accident_severity",
+  "classes": [
+    "Major",
+    "Minor",
+    "No_Accident"
+  ],
+  "class_to_route_risk": {
+    "Major": "High",
+    "Minor": "Medium",
+    "No_Accident": "Low"
+  },
+  "rows_used": 250000,
+  "test_size": 0.2,
+  "accuracy": 0.5378,
+  "weighted_f1": 0.6034908152804388,
+  "note": "Model trained for student project route-risk scoring. Dataset is synthetic BDRoadRisk data; route graph comes from OpenStreetMap."
+}

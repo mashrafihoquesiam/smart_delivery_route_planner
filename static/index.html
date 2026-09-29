@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartRoute BD | Delivery intelligence</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark">SR</div>
+      <div><p class="eyebrow">Dhaka delivery intelligence</p><h1>SmartRoute <span>BD</span></h1></div>
+    </div>
+    <div class="system-status"><i></i><span id="systemStatus">Checking planner...</span></div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel controls">
+      <div class="section-heading"><div><p class="eyebrow">Route studio</p><h2>Plan a delivery</h2></div><span class="step-number">01</span></div>
+      <p class="muted intro">Set the trip context and let risk-aware routing find the better road.</p>
+      <div class="field-group route-fields">
+        <label for="start">Pickup from</label>
+        <div class="select-wrap"><span class="field-icon start-icon"></span><select id="start" aria-label="Pickup location"></select></div>
+        <div class="route-connector"></div>
+        <label for="destination">Deliver to</label>
+        <div class="select-wrap"><span class="field-icon end-icon"></span><select id="destination" aria-label="Destination"></select></div>
+      </div>
+      <div class="field-grid">
+        <div class="field-group"><label for="weather">Weather</label><div class="select-wrap"><select id="weather"><option>Clear</option><option>Rain</option><option>Fog</option><option>Storm</option></select></div></div>
+        <div class="field-group"><label for="vehicle_type">Vehicle</label><div class="select-wrap"><select id="vehicle_type"><option>Motorcycle</option><option>Car</option><option>Van</option><option>Truck</option></select></div></div>
+        <div class="field-group"><label for="hour">Hour <span>(0–23)</span></label><input id="hour" type="number" min="0" max="23" value="18" inputmode="numeric" /></div>
+        <div class="field-group"><label for="month">Month <span>(1–12)</span></label><input id="month" type="number" min="1" max="12" value="9" inputmode="numeric" /></div>
+      </div>
+      <button id="routeBtn" class="primary-button"><span>Calculate smart route</span><b>→</b></button>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div class="method-note"><span class="spark">✦</span><span><strong>Risk-aware routing</strong><br />Logistic Regression + A* search</span></div>
+    </aside>
+
+    <section class="content-column">
+      <div class="route-header"><div><p class="eyebrow">Live route overview</p><h2 id="routeTitle">Ready for your next delivery</h2><p id="routeSubtitle" class="muted">Choose two locations to see a risk-aware recommendation.</p></div><div id="riskBadge" class="risk-badge is-hidden"><i></i><span>Risk pending</span></div></div>
+      <div id="cards" class="metric-grid" aria-live="polite">
+        <div class="metric-card placeholder"><span>Distance</span><strong>--</strong><small>kilometers</small></div><div class="metric-card placeholder"><span>Route cost</span><strong>--</strong><small>risk weighted</small></div><div class="metric-card placeholder"><span>Risk edges</span><strong>--</strong><small>road segments</small></div><div class="metric-card placeholder"><span>Engine</span><strong>A*</strong><small>with risk penalty</small></div>
+      </div>
+      <div class="map-panel"><div class="map-toolbar"><span class="map-title"><i></i> Dhaka road network</span><span class="map-hint">Route updates with your trip context</span></div><div id="map"><div class="map-empty"><div class="map-empty-icon">⌁</div><strong>Your route will appear here</strong><span>Calculate a route to explore the safest path.</span></div></div><div class="map-legend"><span><i class="legend-line route-line"></i>Recommended route</span><span><i class="legend-dot pickup-dot"></i>Pickup</span><span><i class="legend-dot delivery-dot"></i>Delivery</span></div></div>
+      <div class="insight-panel"><div class="insight-copy"><p class="eyebrow">Route intelligence</p><h3>Why this route?</h3><div id="explanation" class="explanation"><p class="muted">Your route explanation and risk mix will show here after calculation.</p></div></div><div class="risk-breakdown"><p class="eyebrow">Road segment mix</p><div id="riskBars"><div class="risk-row"><span>Low</span><div class="bar"><i class="low-bar" style="width: 0%"></i></div><b>--</b></div><div class="risk-row"><span>Medium</span><div class="bar"><i class="medium-bar" style="width: 0%"></i></div><b>--</b></div><div class="risk-row"><span>High</span><div class="bar"><i class="high-bar" style="width: 0%"></i></div><b>--</b></div></div></div></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
